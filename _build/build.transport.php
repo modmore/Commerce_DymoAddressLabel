@@ -24,7 +24,7 @@ if (!defined('MOREPROVIDER_BUILD')) {
     define('PKG_NAME', 'Commerce Dymo Address Label');
     define('PKG_NAMESPACE', 'commerce_dymoaddresslabel');
     define('PKG_VERSION', '1.0.0');
-    define('PKG_RELEASE', 'rc1');
+    define('PKG_RELEASE', 'rc3');
 
     /* load modx */
     require_once dirname(dirname(__FILE__)) . '/config.core.php';
@@ -87,10 +87,10 @@ $modx->log(modX::LOG_LEVEL_INFO,'Packaged in namespace.'); flush();
 // Add the validator to check server requirements
 $vehicle->validate('php', array('source' => $sources['validators'] . 'requirements.script.php'));
 
-//$vehicle->resolve('file',array(
-//    'source' => $sources['source_assets'],
-//    'target' => "return MODX_ASSETS_PATH . 'components/';",
-//));
+$vehicle->resolve('file',array(
+    'source' => $sources['source_assets'],
+    'target' => "return MODX_ASSETS_PATH . 'components/';",
+));
 $vehicle->resolve('file',array(
     'source' => $sources['source_core'],
     'target' => "return MODX_CORE_PATH . 'components/';",
