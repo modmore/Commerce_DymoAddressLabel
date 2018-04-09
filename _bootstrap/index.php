@@ -67,7 +67,7 @@ if (!createObject('modSystemSetting', array(
     echo "Error creating commerce_dymoaddresslabel.assets_url setting.\n";
 }
 
-
+/*
 $settings = include dirname(dirname(__FILE__)).'/_build/data/settings.php';
 foreach ($settings as $key => $opts) {
     $val = $opts['value'];
@@ -87,7 +87,7 @@ foreach ($settings as $key => $opts) {
     ), 'key', false)) {
         echo "Error creating commerce_dymoaddresslabel.".$key." setting.\n";
     }
-}
+}*/
 
 
 $path = $modx->getOption('commerce.core_path', null, MODX_CORE_PATH . 'components/commerce/') . 'model/commerce/';
