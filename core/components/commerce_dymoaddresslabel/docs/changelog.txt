@@ -1,0 +1,4 @@
+++ Dymo Address Label for Commerce 0.1.0-pl
+++ Released on 2018-04-09
+++++++++++++++++++++++++++
+- First release
