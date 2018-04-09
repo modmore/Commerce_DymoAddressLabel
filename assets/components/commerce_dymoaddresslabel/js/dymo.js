@@ -8,15 +8,10 @@ window.CommerceModules.push({
 });
 
 class CommerceDymo {
-    constructor () {
-        console.log('constructed')
-    }
-
     init(dom) {
-        console.log('dymo init');
-        let btns = dom.querySelectorAll('.commerce-dymo-print-btn');
+        let addresses = dom.querySelectorAll('.commerce-order-address-wrapper');
 
-        if (btns.length > 0) {
+        if (addresses.length > 0) {
 
             // See if we have any printers
             try {
@@ -31,22 +26,41 @@ class CommerceDymo {
                     }
                 }
 
-                for (let i = 0; i < btns.length; i++) {
-                    let btn = btns[i];
+                for (let i = 0; i < addresses.length; i++) {
+                    let address = addresses[i],
+                        btnWrap = address.querySelector('.commerce-address-actions'),
+                        target = address.querySelector('.commerce-order-address');
 
+                    if (!btnWrap || !target) {
+                        console.warn('Can\'t add print with dymo button; action (commerce-address-actions) or target dom (commerce-order-address) not found');
+                        continue;
+                    }
                     if (printerName === '') {
-                        btn.style.display = 'none';
                         console.warn('[Commerce/Dymo] Unable of loading any Dymo printers - are you sure it is connected?');
+                        break;
                     }
-                    else {
-                        btn.querySelector('.printer-name').innerText = printerName;
-                        btn.setAttribute('data-printer', printerName);
-                        btn.addEventListener('click', this.printLabel);
-                        btn.style.display = 'initial';
-                    }
+
+                    // Create a button with an icon and label, and insert it into the actions wrapper
+                    let btn = document.createElement('button'),
+                        icon = document.createElement('i'),
+                        label = document.createElement('span');
+
+                    btn.classList.add('ui', 'small', 'icon', 'labeled', 'button');
+                    btn.setAttribute('data-printer', printerName);
+                    btn.setAttribute('data-content', '#' + target.getAttribute('id'));
+                    btn.addEventListener('click', this.printLabel);
+
+                    icon.classList.add('icon', 'icon-print');
+
+                    label.innerText = printerName;
+
+                    btn.appendChild(icon);
+                    btn.appendChild(label);
+                    btnWrap.appendChild(btn);
                 }
             }
             catch (e){
+                console.error(e);
                 alert(e.message || e);
             }
         }
