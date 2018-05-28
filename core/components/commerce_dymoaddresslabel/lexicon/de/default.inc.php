@@ -1,4 +1,4 @@
 <?php
 
-$_lang['commerce_dymoaddresslabel'] = 'Dymo Address Label';
-$_lang['commerce_dymoaddresslabel.description'] = 'Integrates with the Dymo Label Writer SDK to print address labels directly from the order view.';
+$_lang['commerce_dymoaddresslabel'] = 'DYMO-Adressetikett';
+$_lang['commerce_dymoaddresslabel.description'] = 'Integration mit dem Dymo Label Writer SDK, um Adressaufkleber direkt aus der Bestellansicht zu drucken.';
