@@ -1,4 +1,11 @@
-++ Dymo Address Label for Commerce 0.1.0-pl
-++ Released on 2018-04-09
-++++++++++++++++++++++++++
+Dymo Address Label for Commerce 1.1.0-pl
+----------------------------------------
+Released on 2018-09-11
+
+- Add support for the new 3.0 JS SDK required on DLS 8.7.2 or newer
+
+Dymo Address Label for Commerce 0.1.0-pl
+----------------------------------------
+Released on 2018-04-09
+
 - First release

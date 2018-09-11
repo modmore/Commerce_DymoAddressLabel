@@ -1,5 +1,7 @@
 <?php
 namespace modmore\Commerce\DymoAddressLabel\Modules;
+
+use modmore\Commerce\Admin\Widgets\Form\SelectField;
 use modmore\Commerce\Events\Admin\GeneratorEvent;
 use modmore\Commerce\Modules\BaseModule;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -47,9 +49,38 @@ class DymoAddressLabel extends BaseModule {
         $baseUrl = $this->adapter->getOption('commerce_dymoaddresslabel.assets_url', null,
             $this->adapter->getOption('assets_url') . 'components/commerce_dymoaddresslabel/');
 
-        $generator->addJavaScript($baseUrl . 'dist/dymo.label.framework.20170108.js');
+        if ($this->getConfig('sdk_version') === '3.0') {
+            $generator->addJavaScript($baseUrl . 'dist/dymo.label.framework.3.0.js');
+        }
+        else {
+            $generator->addJavaScript($baseUrl . 'dist/dymo.label.framework.20170108.js');
+        }
         $generator->addJavaScript($baseUrl . 'dist/dymo.js');
 
         $generator->addHTMLFragment('<script type="text/template" id="commerce-address-label">' . $this->commerce->twig->render('dymo/address.label') . '</script>');
+    }
+
+    public function getModuleConfiguration(\comModule $module)
+    {
+        $fields = [];
+
+        $fields[] = new SelectField($this->commerce, [
+            'name' => 'properties[sdk_version]',
+            'label' => $this->adapter->lexicon('commerce_dymoaddresslabel.sdk_version'),
+            'description' => $this->adapter->lexicon('commerce_dymoaddresslabel.sdk_version.desc'),
+            'options' => [
+                [
+                    'label' => $this->adapter->lexicon('commerce_dymoaddresslabel.sdk_version.legacy'),
+                    'value' => '',
+                ],
+                [
+                    'label' => $this->adapter->lexicon('commerce_dymoaddresslabel.sdk_version.3.0'),
+                    'value' => '3.0',
+                ],
+            ],
+            'value' => $module->getProperty('sdk_version')
+        ]);
+
+        return $fields;
     }
 }
