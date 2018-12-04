@@ -2,11 +2,11 @@
   "name": "@modmorecommerce/dymoaddresslabel",
   "description": "Dymo label writer module for modmore's Commerce",
   "version": "0.0.0",
-  "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "parallelshell": "^3.0.2",
-    "watch": "^1.0.2"
+  "devDependencies": {
+    "babel-cli": "^6",
+    "babel-preset-env": "^1",
+    "parallelshell": "^3",
+    "watch": "^1"
   },
   "scripts": {
     "build": "npm run build:js",
