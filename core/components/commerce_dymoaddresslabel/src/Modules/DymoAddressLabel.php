@@ -6,7 +6,6 @@ use modmore\Commerce\Events\Admin\GeneratorEvent;
 use modmore\Commerce\Modules\BaseModule;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Twig\Loader\ChainLoader;
-use Twig\Loader\FilesystemLoader;
 
 require_once dirname(dirname(__DIR__)) . '/vendor/autoload.php';
 
@@ -35,9 +34,8 @@ class DymoAddressLabel extends BaseModule {
 
         // Add template path to twig
         /** @var ChainLoader $loader */
-        $root = dirname(dirname(__DIR__));
-        $loader = $this->commerce->twig->getLoader();
-        $loader->addLoader(new FilesystemLoader($root . '/templates/'));
+        $root = dirname(__DIR__, 2);
+        $this->commerce->view()->addTemplatesPath($root . '/templates/');
 
         $dispatcher->addListener(\Commerce::EVENT_DASHBOARD_INIT_GENERATOR, [$this, 'initGenerator']);
     }
@@ -57,7 +55,7 @@ class DymoAddressLabel extends BaseModule {
         }
         $generator->addJavaScript($baseUrl . 'dist/dymo.js');
 
-        $generator->addHTMLFragment('<script type="text/template" id="commerce-address-label">' . $this->commerce->twig->render('dymo/address.label') . '</script>');
+        $generator->addHTMLFragment('<script type="text/template" id="commerce-address-label">' . $this->commerce->view()->render('dymo/address.label') . '</script>');
     }
 
     public function getModuleConfiguration(\comModule $module)
