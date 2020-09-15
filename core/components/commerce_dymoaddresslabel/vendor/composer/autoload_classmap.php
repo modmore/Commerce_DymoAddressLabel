@@ -6,4 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'modmore\\Commerce\\DymoAddressLabel\\Modules\\DymoAddressLabel' => $baseDir . '/src/Modules/DymoAddressLabel.php',
 );

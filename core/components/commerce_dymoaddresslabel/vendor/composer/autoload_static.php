@@ -20,11 +20,16 @@ class ComposerStaticInitb58fd05da90cb6a48033527fe3d73cb3
         ),
     );
 
+    public static $classMap = array (
+        'modmore\\Commerce\\DymoAddressLabel\\Modules\\DymoAddressLabel' => __DIR__ . '/../..' . '/src/Modules/DymoAddressLabel.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInitb58fd05da90cb6a48033527fe3d73cb3::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitb58fd05da90cb6a48033527fe3d73cb3::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitb58fd05da90cb6a48033527fe3d73cb3::$classMap;
 
         }, null, ClassLoader::class);
     }
